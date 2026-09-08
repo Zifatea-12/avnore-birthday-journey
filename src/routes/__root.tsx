@@ -118,7 +118,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <AudioPlayer />
-      <Outlet />
+      <Outlet /> {/* Wajib ada agar halaman index.tsx dipanggil */}
     </QueryClientProvider>
   );
 }
