@@ -1,0 +1,27 @@
+export function BirthdayCard() {
+  return (
+    <section className="flex min-h-screen items-center justify-center bg-emerald-950 px-6 py-12">
+      <div className="w-full max-w-xl border border-amber-200/30 bg-stone-100 p-8 text-center shadow-2xl">
+        <p className="mb-3 text-sm uppercase tracking-[0.3em] text-emerald-800">
+          A birthday journey
+        </p>
+
+        <h1 className="font-display text-5xl text-emerald-950">
+          Happy Birthday, Avnore
+        </h1>
+
+        <p className="mt-5 font-letter text-xl leading-relaxed text-stone-700">
+          A small collection of memories, wishes, and heartfelt words made
+          especially for you.
+        </p>
+
+        <button
+          type="button"
+          className="mt-8 bg-emerald-900 px-6 py-3 text-sm font-medium text-stone-100 transition-colors hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-amber-400"
+        >
+          Begin the journey
+        </button>
+      </div>
+    </section>
+  );
+}
