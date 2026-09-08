@@ -4,12 +4,10 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
-  HeadContent,
-  Scripts,
 } from "@tanstack/react-router";
-import { type ReactNode, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { Volume2, VolumeX } from "lucide-react";
-import appCss from "../styles.css?url";
+import "../styles.css";
 
 export function AudioPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -22,22 +20,21 @@ export function AudioPlayer() {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      audioRef.current.volume = 0.3; // Setel volume ke 30%
-      
+      audioRef.current.volume = 0.3;
+
       audioRef.current
         .play()
         .then(() => {
           setIsPlaying(true);
         })
         .catch((error) => {
-          console.error("Gagal memutar audio. Cek lokasi file atau izin browser:", error);
+          console.error("Gagal memutar audio:", error);
         });
     }
   };
 
   return (
     <>
-      {/* Sesuaikan huruf 'audio' di bawah dengan nama folder asli di public/ */}
       <audio ref={audioRef} src="/audio/bg-music.mp3" loop preload="auto" />
 
       <button
@@ -110,56 +107,17 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Avnore Birthday Journey" },
-      { name: "description", content: "A special birthday journey for Avnore" },
-      { name: "author", content: "Rhea Satvika" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap",
-      },
-    ],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
-function RootShell({ children }: { children: ReactNode }) {
-  return (
-    <html lang="id">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {/* PENTING: AudioPlayer diletakkan di sini agar aktif di semua halaman */}
-        <AudioPlayer />
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
+      <AudioPlayer />
       <Outlet />
     </QueryClientProvider>
   );
