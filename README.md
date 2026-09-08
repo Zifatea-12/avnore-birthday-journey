@@ -23,7 +23,7 @@ An intimate, interactive birthday archive made for Avnore Daryush. The experienc
 Requirements: Node.js and npm.
 
 ```sh
-git clone https://github.com/Zifatea-12/Praktikum-Big-Data.git
+git clone https://github.com/Zifatea-12 avnore-birthday-journey.git
 cd avnore-birthday-journey
 npm install
 npm run dev
