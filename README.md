@@ -56,3 +56,10 @@ src/
 ## License
 
 This is a personal birthday project created for Avnore Daryush.
+
+## Music
+
+Background music:
+- "The Wandering Knight" by kaazoom
+- Source: Pixabay
+- Used under the Pixabay Content License
